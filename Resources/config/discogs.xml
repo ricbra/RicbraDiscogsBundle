@@ -11,7 +11,7 @@
 
     <services>
         <service id="ricbra_discogs.client" class="%ricbra_discogs.client.class%" public="false">
-            <argument type="service" id="buzz" />
+            <argument />
             <argument>%ricbra_discogs.host%</argument>
             <argument>%ricbra_discogs.identifier%</argument>
         </service>

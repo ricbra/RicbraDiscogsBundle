@@ -1,0 +1,25 @@
+{
+    "name": "ricbra/discogs-bundle",
+    "description": "Bundle around the Discogs API client",
+    "type": "symfony-bundle",
+    "keywords": ["discogs", "api"],
+    "homepage": "https://github.com/ricbra/RicbraDiscogsBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Richard van den Brand",
+            "email": "richard@vandenbrand.org"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "kriswallsmith/buzz": "0.5",
+        "ricbra/php-discogs-api": "0.1"
+    },
+    "target-dir": "Ricbra/Bundle/DiscogsBundle",
+    "autoload": {
+        "psr-0": {
+            "Ricbra\\Bundle\\DiscogsBundle": ""
+        }
+    }
+}
