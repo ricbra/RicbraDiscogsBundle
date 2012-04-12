@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="ricbra_discogs.client.class">Discogs\Client</parameter>
+        <parameter key="ricbra_discogs.service.class">Discogs\Service</parameter>
+    </parameters>
+
+    <services>
+        <service id="ricbra_discogs.client" class="%ricbra_discogs.client.class%" public="false">
+            <argument type="service" id="buzz" />
+            <argument>%ricbra_discogs.host%</argument>
+            <argument>%ricbra_discogs.identifier%</argument>
+        </service>
+
+        <service id="discogs" class="%ricbra_discogs.service.class%">
+            <argument type="service" id="ricbra_discogs.client" />
+            <argument>%ricbra_discogs.items_per_page%</argument>
+        </service>
+    </services>
+
+</container>
