@@ -32,7 +32,7 @@ add the following entries to the `deps` file at the root of your project file:
 [discogs]
     git=git://github.com/ricbra/php-discogs-api.git
 
-[SensioBuzzBundle]
+[RicbraDiscogsBundle]
     git=git://github.com/ricbra/RicbraDiscogsBundle.git
     target=bundles/Ricbra/Bundle/DiscogsBundle
 ```
