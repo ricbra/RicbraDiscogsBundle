@@ -4,7 +4,7 @@ RicbraDiscogsBundle
 This bundle provides a simple integration of the "[Discogs
 library](/ricbra/php-discogs-api)" into Symfony2. You can find more
 information about this library on its dedicated page at
-https://github.com/ricbra/php-discogs-api.
+http://www.discogs.com/developers/index.html.
 
 ``` php
 <?php
@@ -102,8 +102,8 @@ Congratulations! You're ready to use the Discogs libary into Symfony2!
 
 ## Basic Usage
 
-The only thing to do is to request the `buzz` service from the container to get
-an instance of `Buzz\Browser` and start issuing HTTP requests:
+The only thing to do is to request the `discogs` service from the container to get
+an instance of `Discogs\Service` and start issuing API calls:
 
 ``` php
 <?php
