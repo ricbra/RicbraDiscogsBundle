@@ -7,11 +7,12 @@
     <parameters>
         <parameter key="ricbra_discogs.client.class">Discogs\Client</parameter>
         <parameter key="ricbra_discogs.service.class">Discogs\Service</parameter>
+        <parameter key="ricbra_discogs.buzz"/>
     </parameters>
 
     <services>
         <service id="ricbra_discogs.client" class="%ricbra_discogs.client.class%" public="false">
-            <argument />
+            <argument>null</argument>
             <argument>%ricbra_discogs.host%</argument>
             <argument>%ricbra_discogs.identifier%</argument>
         </service>
