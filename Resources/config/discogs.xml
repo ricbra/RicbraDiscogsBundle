@@ -20,6 +20,7 @@
         <service id="discogs" class="%ricbra_discogs.service.class%">
             <argument type="service" id="ricbra_discogs.client" />
             <argument>%ricbra_discogs.items_per_page%</argument>
+            <argument>%ricbra_discogs.throttle%</argument>
         </service>
     </services>
 
