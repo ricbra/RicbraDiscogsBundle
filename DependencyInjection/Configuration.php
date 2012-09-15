@@ -32,6 +32,10 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('identifier')
                     ->defaultValue('DiscogsApi/0.1 +https://github.com/ricbra/php-discogs-api')
                 ->end()
+                ->scalarNode('throttle')
+                    ->defaultTrue()
+                    ->cannotBeEmpty()
+                ->end()
             ->end()
         ;
 
