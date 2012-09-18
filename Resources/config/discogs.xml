@@ -7,6 +7,7 @@
     <parameters>
         <parameter key="ricbra_discogs.client.class">Discogs\Client</parameter>
         <parameter key="ricbra_discogs.service.class">Discogs\Service</parameter>
+        <parameter key="ricbra_discogs_cacher_mongodb.service.class">Ricbra\Bundle\DiscogsBundle\Cacher\MongoDB</parameter>
         <parameter key="ricbra_discogs.buzz"/>
     </parameters>
 
@@ -21,6 +22,20 @@
             <argument type="service" id="ricbra_discogs.client" />
             <argument>%ricbra_discogs.items_per_page%</argument>
             <argument>%ricbra_discogs.throttle%</argument>
+        </service>
+
+        <service id="discogs_cacher_mongodb" class="%ricbra_discogs_cacher_mongodb.service.class%">
+            <argument type="service" id="doctrine.odm.mongodb.document_manager" on-invalid="ignore" />
+            <argument>%ricbra_discogs.cache_ttl%</argument>
+        </service>
+
+        <service id="discogs_cached_mongodb" class="%ricbra_discogs.service.class%">
+            <argument type="service" id="ricbra_discogs.client" />
+            <argument>%ricbra_discogs.items_per_page%</argument>
+            <argument>%ricbra_discogs.throttle%</argument>
+            <call method="setCacher">
+                <argument type="service" id="discogs_cacher_mongodb" />
+            </call>
         </service>
     </services>
 
