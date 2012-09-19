@@ -36,6 +36,10 @@ class Configuration implements ConfigurationInterface
                     ->defaultTrue()
                     ->cannotBeEmpty()
                 ->end()
+                ->scalarNode('cache_ttl')
+                    ->defaultValue(86400)
+                    ->cannotBeEmpty()
+                ->end()
             ->end()
         ;
 

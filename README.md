@@ -63,7 +63,17 @@ $ git submodule init
 $ git submodule update
 ```
 
+### Step1 (another alternative): Installation via Composer
+
+Add this line to the `require` section of your `composer.json`:
+```
+"ricbra/discogs-bundle": "*"
+```
+
+run `php composer.phar update`
+
 ### Step2: Configure the autoloader
+**> Skip this step if you installed bundle using Composer**
 
 Add the following entries to your autoloader:
 
@@ -115,16 +125,33 @@ $artist = $discogs->getArtist(120);
 echo $artist->getName();
 ```
 
+## Caching
+
+You may take advantage of caching responses. Currently only MongoDB implementation is available. To use it you need
+to grab another service called `discogs_cached_mongodb`. It will automatically create `DiscogsCached` collection
+in your database. You may disable/enable caching throughout the program flow using these methods:
+
+``` php
+$discogs = $this->get('discogs_cached_mongodb');
+// do something
+$discogs->disableCache();
+// do something
+$discogs->enableCache();
+```
+
 ## Configuration
 
 By default, this bundle configures Discogs library to use the default Buzz settings. You can override these in order to
 use curl for example.
 
 Me and Discogs really appreciate it if you supply your own unique identifier (will be send as user agent header).
-Furthermore the default items per request is 50. A typically config would look like this:
+Furthermore the default items per request is 50. Discogs API also states that it doesn't limit you in requests amount,
+but throttles them in time - 1 request per second. The library has throttling mechanism implemented and enabled by default,
+so you won't get into request rejecting situation using free access. A typically config would look like this:
 
 ``` yaml
 ricbra_discogs:
     identifier: "VendorAcmeBundle/0.1 +http://yourgreatwebsite.com"
     items_per_page: 100
+    throttle: true
 ```
