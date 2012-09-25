@@ -155,3 +155,18 @@ ricbra_discogs:
     items_per_page: 100
     throttle: true
 ```
+
+Also, if your required configuration differs from the default one you may specify your own service inside the `services.yml` file 
+with all necessary parameters set:
+
+``` yaml
+acme_discogs:
+    class: Discogs\Service
+    arguments:
+        - @ricbra_discogs.client
+        - %ricbra_discogs.items_per_page%
+        - %ricbra_discogs.throttle%
+    calls:
+        - [setResponseTransformer, [@discogs_response_transformer_hash]]
+        - [setCacher, [@discogs_cacher_mongodb]]
+```
