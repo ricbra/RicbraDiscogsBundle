@@ -13,8 +13,7 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "kriswallsmith/buzz": ">=0.5",
-        "ricbra/php-discogs-api": "0.4"
+        "ricbra/php-discogs-api": ">=0.5"
     },
     "target-dir": "Ricbra/Bundle/DiscogsBundle",
     "autoload": {
