@@ -170,3 +170,7 @@ acme_discogs:
         - [setResponseTransformer, [@discogs_response_transformer_hash]]
         - [setCacher, [@discogs_cacher_mongodb]]
 ```
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ricbra/ricbradiscogsbundle/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
