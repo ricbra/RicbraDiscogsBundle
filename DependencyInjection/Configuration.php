@@ -21,24 +21,41 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('ricbra_discogs');
         $rootNode
             ->children()
-                ->scalarNode('host')
-                    ->defaultValue('api.discogs.com')
-                    ->cannotBeEmpty()
+                ->scalarNode('user_agent')
+                    ->defaultValue('RicBraDiscogsBundle/1.0 +https://github.com/ricbra/php-discogs-api')
                 ->end()
-                ->scalarNode('items_per_page')
-                    ->defaultValue(50)
-                    ->cannotBeEmpty()
+                ->arrayNode('throttle')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->booleanNode('enabled')
+                            ->defaultTrue()
+                        ->end()
+                        ->integerNode('microseconds')
+                            ->defaultValue(1000000)
+                        ->end()
+                     ->end()
                 ->end()
-                ->scalarNode('identifier')
-                    ->defaultValue('DiscogsApi/0.1 +https://github.com/ricbra/php-discogs-api')
-                ->end()
-                ->scalarNode('throttle')
-                    ->defaultTrue()
-                    ->cannotBeEmpty()
-                ->end()
-                ->scalarNode('cache_ttl')
-                    ->defaultValue(86400)
-                    ->cannotBeEmpty()
+                ->arrayNode('oauth')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->booleanNode('enabled')
+                            ->defaultFalse()
+                        ->end()
+                        ->scalarNode('consumer_key')->end()
+                        ->scalarNode('consumer_secret')->end()
+                        ->scalarNode('token_provider_id')->end()
+                    ->end()
+                    ->validate()
+                        ->ifTrue(function($a) {
+                            $enabled = $a['enabled'];
+                            $key = isset($a['consumer_key']) && $a['consumer_key'];
+                            $secret = isset($a['consumer_secret']) && $a['consumer_secret'];
+                            $token = isset($a['token_provider_id']) && $a['token_provider_id'];
+
+                            return $enabled && (! $key || ! $secret || ! $token);
+                        })
+                        ->thenInvalid('The option "ricbra_discogs.oauth.consumer_key", "ricbra_discogs.oauth.consumer_secret" and "ricbra_discogs.oauth.token_provider_id" are required')
+                    ->end()
                 ->end()
             ->end()
         ;
