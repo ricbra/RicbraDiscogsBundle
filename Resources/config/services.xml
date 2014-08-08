@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="ricbra_discogs.client_factory.class">Discogs\ClientFactory</parameter>
+        <parameter key="ricbra_discogs.client.class">GuzzleHttp\Command\Guzzle\GuzzleClient</parameter>
+        <parameter key="ricbra_discogs.subscriber.class">Discogs\Subscriber\ClientFactory</parameter>
+        <parameter key="ricbra_discogs.subscriber.throttle_subscriber.class">Discogs\Subscriber\ThrottleSubscriber</parameter>
+        <parameter key="ricbra_discogs.emitter.class">GuzzleHttp\Event\Emitter</parameter>
+    </parameters>
+
+    <services>
+        <service id="discogs"
+                 factory-class="%ricbra_discogs.client_factory.class%"
+                 factory-method="factory"
+                 class="%ricbra_discogs.client.class%">
+            <argument />
+        </service>
+        <service id="ricbra_discogs.subscriber.throttle_subscriber" class="%ricbra_discogs.subscriber.throttle_subscriber.class%" public="false">
+            <argument />
+        </service>
+        <service id="ricbra_discogs.emitter" class="%ricbra_discogs.emitter.class%" public="false" />
+    </services>
+</container>
