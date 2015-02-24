@@ -19,7 +19,7 @@ The bundle provides a new `discogs` service that returns an instance of
 
 ## Installation
 
-    $ composer require ricbra/ricbra/discogs-bundle ~1.0.0
+    $ composer require ricbra/discogs-bundle ~1.0.0
 
 ### Enable the bundle
 
