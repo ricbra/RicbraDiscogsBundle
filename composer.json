@@ -12,7 +12,7 @@
         }
     ],
     "require": {
-        "ricbra/php-discogs-api": "~1.0.3"
+        "ricbra/php-discogs-api": "^1.0"
     },
     "target-dir": "Ricbra/Bundle/DiscogsBundle",
     "autoload": {
