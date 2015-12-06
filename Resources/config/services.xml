@@ -13,10 +13,8 @@
     </parameters>
 
     <services>
-        <service id="discogs"
-                 factory-class="%ricbra_discogs.client_factory.class%"
-                 factory-method="factory"
-                 class="%ricbra_discogs.client.class%">
+        <service id="discogs" class="%ricbra_discogs.client.class%">
+            <factory class="%ricbra_discogs.client_factory.class%" method="factory" />
             <argument />
         </service>
         <service id="ricbra_discogs.subscriber.throttle_subscriber" class="%ricbra_discogs.subscriber.throttle_subscriber.class%" public="false">
